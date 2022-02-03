@@ -27,6 +27,15 @@ function hideUpper() {
   $("#keyboard-lower-container").show();
 }
 
+let seconds = 0;
+  let el = document.getElementById("seconds-counter");
+
+  function incrementSeconds() {
+    seconds += 1;
+    el.innerText = "You have been here for " + seconds + " seconds.";
+  }
+
+  setInterval(incrementSeconds, 1000);
 // change bg color of key
 $(document).keypress((e) => {
   $(`#${e.keyCode}`).css("backgroundColor", "yellow");
@@ -53,19 +62,26 @@ $("#sentence").html(sentences[i]);
 $("#target-letter").html(sentences[i][j]);
 
 $(document).keypress((e) => {
+  // let seconds = 0;
+  // function incrementSeconds() {
+  //   seconds += 1;
+  //   let end = document.getElementById("seconds-end");
+  //     end.innerText = "You completed the game in " + seconds + " seconds.";
+  // }
+  // setInterval(incrementSeconds, 1000);
+
   console.log(e.which);
   console.log(e.keyCode);
   console.log(
     String.fromCharCode(
-      80 <= e.keyCode && e.keyCode <= 95 ? e.keyCode - 32 : e.keyCode
+      85 <= e.keyCode && e.keyCode <= 95 ? e.keyCode - 32 : e.keyCode
     )
   );
   console.log(sentences[i][j]);
-  
 
   if (
     String.fromCharCode(
-      80 <= e.keyCode && e.keyCode <= 95 ? e.keyCode - 32 : e.keyCode
+      85 <= e.keyCode && e.keyCode <= 95 ? e.keyCode - 32 : e.keyCode
     ) === sentences[i][j]
   ) {
     console.log("yes");
@@ -76,16 +92,22 @@ $(document).keypress((e) => {
   }
   j++;
   $("#target-letter").html(sentences[i][j]);
-  $("#yellow-block").css("left", `${(j+2)*17}px`);
+  $("#yellow-block").css("left", `${(j + 2) * 17}px`);
   console.log(sentences[i][j]);
 
   if (sentences[i][j] == undefined) {
     i++;
+    if (sentences[i] == undefined) {
+      console.log(sentences[i]);
+      let end = document.getElementById("seconds-end");
+      end.innerText = "You completed the game in " + seconds + " seconds.";
+    }
+
     j = 0;
     $("#sentence").html(sentences[i]);
     $("#target-letter").html(sentences[i][j]);
-    $("#yellow-block").css("left", `${(j+2)*17}px`);
-    $("#feedback").html('');
+    $("#yellow-block").css("left", `${(j + 2) * 17}px`);
+    $("#feedback").html("");
     console.log("new sentence");
   }
 });
