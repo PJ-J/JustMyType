@@ -74,6 +74,7 @@ $(document).keypress((e) => {
   }
   j++;
   $("#target-letter").html(sentences[i][j]);
+  $("#yellow-block").css("left", `${(j+2)*17}px`);
   console.log(sentences[i][j]);
 
   if (sentences[i][j] == undefined) {
@@ -81,6 +82,7 @@ $(document).keypress((e) => {
     j = 0;
     $("#sentence").html(sentences[i]);
     $("#target-letter").html(sentences[i][j]);
+    $("#yellow-block").css("left", `${(j+2)*17}px`);
     console.log("new sentence");
   }
 });
