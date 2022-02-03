@@ -13,9 +13,6 @@ $("body").on({
   keyup: function (e) {
     if (e.originalEvent.key === "Shift") hideUpper();
   },
-  // keypress: function() {
-  //   console.log('keypress triggered')
-  // }
 });
 
 function showUpper() {
@@ -41,33 +38,49 @@ $(document).keypress((e) => {
   }
 });
 
-// $("body").on({
-//   // keydown: function (e) {
-//   //   if (e.originalEvent.key === String.fromCharCode(event.which)); highlightKey();
-//   //   console.log(String.fromCharCode(event.which));
-//   // },
-//   keypress: function (e) {
-//     if (e.originalEvent.key === String.fromCharCode(event.which)); highlightKey();
-//     console.log(String.fromCharCode(event.which));
-//   },
-//   keyup: function (e) {
-//     if (e.originalEvent.key === String.fromCharCode(event.which)); unhighlightKey();
-//     console.log(event.which);
-//   }
+let sentences = [
+  "ten ate neite ate nee enet ite ate inet ent eate",
+  "Too ato too nOt enot one totA not anot tOO aNot",
+  "oat itain oat tain nate eate tea anne inant nean",
+  "itant eate anot eat nato inate eat anot tain eat",
+  "nee ene ate ite tent tiet ent ine ene ete ene ate",
+];
 
-// });
+let i = 0;
+let j = 0;
 
-// function highlightKey() {
-//   // need shift key pressed
-//   // $("#keyboard-upper-container").show();
-//   // $("#keyboard-lower-container").hide();
-//   // console.log(document.getElementById(event.which));
-//   $(`#${e.keyCode}`).css("background-color", "yellow");
-// }
+$("#sentence").html(sentences[i]);
+$("#target-letter").html(sentences[i][j]);
 
-// function unhighlightKey() {
-//   // need shift key released
-//   // $("#keyboard-upper-container").hide();
-//   // $("#keyboard-lower-container").show();
-//   $(`#${event.which}`).css("background-color", "#f5f5f5");
-// }
+$(document).keypress((e) => {
+  console.log(e.which);
+  console.log(e.keyCode);
+  console.log(
+    String.fromCharCode(
+      80 <= e.keyCode && e.keyCode <= 95 ? e.keyCode - 32 : e.keyCode
+    )
+  );
+  console.log(sentences[i][j]);
+  
+
+  if (
+    String.fromCharCode(
+      80 <= e.keyCode && e.keyCode <= 95 ? e.keyCode - 32 : e.keyCode
+    ) === sentences[i][j]
+  ) {
+    console.log("yes");
+  } else {
+    console.log("no");
+  }
+  j++;
+  $("#target-letter").html(sentences[i][j]);
+  console.log(sentences[i][j]);
+
+  if (sentences[i][j] == undefined) {
+    i++;
+    j = 0;
+    $("#sentence").html(sentences[i]);
+    $("#target-letter").html(sentences[i][j]);
+    console.log("new sentence");
+  }
+});
