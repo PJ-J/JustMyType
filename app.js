@@ -69,8 +69,10 @@ $(document).keypress((e) => {
     ) === sentences[i][j]
   ) {
     console.log("yes");
+    $("#feedback").append('<span class="glyphicon glyphicon-ok"></span>');
   } else {
     console.log("no");
+    $("#feedback").append('<span class="glyphicon glyphicon-remove"></span>');
   }
   j++;
   $("#target-letter").html(sentences[i][j]);
@@ -83,6 +85,7 @@ $(document).keypress((e) => {
     $("#sentence").html(sentences[i]);
     $("#target-letter").html(sentences[i][j]);
     $("#yellow-block").css("left", `${(j+2)*17}px`);
+    $("#feedback").html('');
     console.log("new sentence");
   }
 });
