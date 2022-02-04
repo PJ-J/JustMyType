@@ -34,6 +34,7 @@ $("#reset").hide();
 let seconds = 0;
 let el = document.getElementById("seconds-counter");
 setInterval(incrementSeconds, 1000);
+$("#seconds-counter").hide();
 
 function incrementSeconds() {
   seconds += 1;
