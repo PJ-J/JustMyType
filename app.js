@@ -83,10 +83,10 @@ $(document).keypress((e) => {
   $("#target-letter").html(sentences[i][j]);
   $("#yellow-block").css("left", `${(j + 2) * 17}px`);
 
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds - minutes * 60;
+  const minutes = seconds / 60;
+  // const remainingSeconds = seconds - minutes * 60;
 
-  let wpm = 54 / minutes + remainingSeconds - 2 * mistakes.length;
+  let wpm = 54 / minutes - 2 * mistakes.length;
 
   if (sentences[i][j] == undefined) {
     i++;
@@ -97,7 +97,7 @@ $(document).keypress((e) => {
         "You completed the game in " +
         seconds +
         " seconds. Your words per minute is " +
-        wpm +
+        wpm.toFixed(2) +
         ".";
       $("#reset").show();
 
@@ -114,7 +114,7 @@ $(document).keypress((e) => {
         $("#reset").hide();
       });
     }
-
+ 
     j = 0;
     $("#sentence").html(sentences[i]);
     $("#target-letter").html(sentences[i][j]);
