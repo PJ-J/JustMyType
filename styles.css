@@ -1,3 +1,7 @@
+body {
+  background-color: lightblue;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +9,7 @@
 
 #prompt-container {
   font-family: Courier New, Courier, monospace;
+  text-shadow: 2px 2px 4px #000000;
   font-size: 24px;
   letter-spacing: 3px;
 }
@@ -23,6 +28,11 @@
 
 #target-letter {
   font-size: 38px;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.well {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .keys-row {
